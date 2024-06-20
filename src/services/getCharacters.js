@@ -1,4 +1,4 @@
-import { API_URL } from './constants';
+import { API_URL } from '../utils/constants';
 
 export const getCharacters = async (isFirstCall, search) => {
     const url = isFirstCall ? API_URL : `${API_URL}?name=${search}`;
