@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card } from './components/Card';
-import { API_URL } from './utils/constants';
+import { getCharacters } from './utils/getCharacters';
 import './App.css'
 import { SearchBar } from './components/SearchBar';
 
@@ -9,14 +9,8 @@ function App() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    fetch(API_URL)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Something went wrong');
-        }
-        return response.json()
-      })
-      .then(data => setData(data))
+    getCharacters(true, null)
+      .then((data) => setData(data));
   }, []);
 
   const handleInput = (e) => {
@@ -24,15 +18,8 @@ function App() {
   }
 
   const fetchCharacter = () => {
-    fetch(`${API_URL}?name=${search}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Something went wrong');
-        }
-        return response.json();
-      })
-      .then(data => setData(data))
-      .catch(error => console.error(error))
+    getCharacters(false, search)
+      .then((data) => setData(data));
   }
 
 
