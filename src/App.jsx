@@ -1,7 +1,6 @@
 import { Card } from './components/Card';
 import { SearchBar } from './components/SearchBar';
 import { useFetchCharacters } from './hooks/useFetchCharacters';
-import './App.css'
 
 function App() {
   const { data, setSearch, fetchCharacter } = useFetchCharacters();
