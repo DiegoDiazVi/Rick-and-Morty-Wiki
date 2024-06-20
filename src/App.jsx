@@ -1,27 +1,14 @@
-import { useState, useEffect } from 'react';
 import { Card } from './components/Card';
-import { getCharacters } from './utils/getCharacters';
-import './App.css'
 import { SearchBar } from './components/SearchBar';
+import { useFetchCharacters } from './hooks/useFetchCharacters';
+import './App.css'
 
 function App() {
-  const [data, setData] = useState(null);
-  const [search, setSearch] = useState('');
-
-  useEffect(() => {
-    getCharacters(true, null)
-      .then((data) => setData(data));
-  }, []);
+  const { data, setSearch, fetchCharacter } = useFetchCharacters();
 
   const handleInput = (e) => {
     setSearch(e.target.value);
   }
-
-  const fetchCharacter = () => {
-    getCharacters(false, search)
-      .then((data) => setData(data));
-  }
-
 
   return (
     <main className='container'>
